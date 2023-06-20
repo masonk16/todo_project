@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+​
+{% block title %} {{ todo_item.title }} {% endblock%}
+​
+{% block content %}
+​
+​
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								{{ todo_item.title }}				
+							</h1>	
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+			<!-- Start post Area -->
+			<section class="post-area section-gap">
+				<div class="container">
+					<div class="row justify-content-center d-flex">
+						<div class="col-lg-8 post-list">
+							<div class="single-post job-details">
+								{% if todo_item.status == 0 %}
+								<h4 class="single-title">Not Done</h4>
+								{% else %}
+								<h4 class="single-title">Done</h4>
+								{% endif %}
+								<p>
+									{{ todo_item.content }}
+								</p>
+							</div>															
+						</div>						
+					</div>
+				</div>	
+			</section>
+			<!-- End post Area -->
+​
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="Submit">
+			</form>
+			
+			<br>
+			
+			{% for comment in comments %}
+			
+			<h4>Name: {{ comment.name }}</h4>
+			<h4>Email: {{ comment.email }}</h4>
+			<h5>Comment: {{ comment.body }}</h5>
+			
+			{% endfor %}
+		{% endblock %}
