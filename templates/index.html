@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}			
+	<!-- Start todo Area -->
+	<section class="post-area section-gap">
+		<div class="container">
+			<div class="row justify-content-center d-flex">
+				<div class="col-lg-12 post-list">
+					{% for item in todo_items %}
+					<div class="single-post d-flex flex-row">
+						<div class="details">
+							<div class="title d-flex flex-row justify-content-between">
+								<div class="titles">
+									<a href="{% url 'todo-detail' slug=item.slug id=item.id %}">
+										<h4>{{ item.title }}</h4>
+									</a>
+									<h6>Created on: {{ item.created_on }}</h6>					
+								</div>
+							</div>
+							<p>
+								{{ item.content }}
+							</p>
+							<h5>Status: {{ item.status }}</h5>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>	
+	</section>
+	<!-- End todo Area -->
+				
+{% endblock %}
