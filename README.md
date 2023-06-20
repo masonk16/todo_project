@@ -10,11 +10,11 @@
 8. Configure Nginx to Proxy to Gunicorn
 9. Configure permissions for files.
 
-## 4
+## 4 Clone our repository to the instance
 
 Clone using either ssh or git token
 
-## 5
+## 5 Configure ubuntu server and login to database
 
 ```shell
 sudo apt-get update
@@ -24,7 +24,7 @@ sudo apt install python3-venv nginx curl postgresql
 psql --host=<DB instance endpoint> --port=<Port> --username=<master username> --password
 ```
 
-## 6
+## 6 Complete the project setup
 
 ```shell
 #Activate the virtual environment and install required libraries
@@ -41,7 +41,7 @@ python3 manage.py creatuperuser
 gunicorn --bind 0.0.0.0:8000 mysite.wsgi
 ```
 
-## 7
+## 7 Create systemd Socket and Service files for Gunicorn
 
 ```shell
 #Create a socket file
@@ -92,7 +92,7 @@ sudo systemctl start gunicorn.socket
 sudo systemctl enable gunicorn.socket
 ```
 
-## 8
+## 8 Configure Nginx to Proxy to Gunicorn
 
 ```shell
 #creating and opening a new server block in Nginx’s sites-available directory:
